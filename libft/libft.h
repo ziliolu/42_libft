@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
+
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src,
@@ -51,8 +52,16 @@ void ft_putchar_fd(char c, int fd);
 void ft_putstr_fd(char *s, int fd);
 void ft_putendl_fd(char *s, int fd);
 void ft_putnbr_fd(int n, int fd);
+
 /*
 ** bonus part
 */
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}						t_list;
+
+t_list	*ft_lstnew(void *content);
 
 #endif

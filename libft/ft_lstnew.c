@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:37:39 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/18 17:17:03 by root             ###   ########.fr       */
+/*   Created: 2022/11/18 15:42:27 by root              #+#    #+#             */
+/*   Updated: 2022/11/18 17:59:09 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_calloc(size_t nmemb, size_t size)
+t_list	*ft_lstnew(void *content)
 {
-    void *ptr;
+	t_list *node;
+	
+	node  = malloc(sizeof(*node));
 
-    if(nmemb == 0 || size == 0)
-        return (0);
-    ptr = malloc(nmemb * size);
-    if(!ptr)
-        return (0);
-    ft_bzero(ptr, (nmemb * size));
-    return (ptr);
+	if(!node)
+		return (NULL);
+
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
 
-int main()
+/*int main()
 {
-    calloc(4, sizeof(int));
-    ft_calloc(4, sizeof(int));
-}
+	t_list *node;
+	int a = 42;
 
+	node = ft_lstnew((void *)&a);
+	while(node)
+	{
+		printf("%d\n", *(int *)node->content);
+		node = node->next;
+	}
+	free(node);
+}*/
