@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 18:27:59 by root              #+#    #+#             */
-/*   Updated: 2022/11/18 18:35:56 by root             ###   ########.fr       */
+/*   Updated: 2022/11/21 14:03:01 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int ft_lstsize(t_list *lst)
 	return (i);
 }
 
-int main()
+/*int main()
 {
 	t_list *first;
 	t_list *second;
@@ -44,4 +44,4 @@ int main()
 	third->next = NULL;
 
 	printf("number of nodes: %d\n", ft_lstsize(first));
-}
+}*/

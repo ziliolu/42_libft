@@ -6,102 +6,86 @@
 /*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:49:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/15 20:15:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:12:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int count_words(char *str, char c)
+static int ft_count_words(char *str, char c)
 {
-    int n;
+    int flag;
     int i;
+    int words;
 
-    n = 0;
+    flag = 1;
     i = 0;
-    while(str[i])
+    words = 0;
+    
+    while (str[i])
     {
-        while(str[i] == c)
+        while (str[i] == c)
             i++;
-        if(str[i])
+        while (str[i] != c && str[i])
         {
-            while(str[i] && str[i] != c)
-                i++;
-            n++;
+            if(flag == 1)
+            {
+                words++;
+                flag = 0;
+            }
+            i++;
         }
+        flag = 1;
     }
-    return(n);   
+    return (words);
 }
 
-int count_word_len(char *str, int c, int i)
+static char *ft_fulfill_tab(char *s, char c, size_t *i)
 {
-    int letter;
+    int start;
 
-    letter = 0;
-    while(str[i] && str[i] != c)
-    {
-        letter++;
-        i++;
-    }
-    return letter;   
+    while(s[*i] == c)
+        (*i)++;
+    start = *i;
+    
+    while(s[*i] && s[*i] != c)
+        (*i)++;
+
+    return(ft_substr(s, start, *i - start));
 }
 
 char **ft_split(char const *s, char c)
 {
-    char **split_tab;
-    int i;
-    int j;
-    int k;
+    char **tab;
+    size_t size;  
+    size_t i;
+    size_t k;
 
+    size = ft_count_words((char *)s, c);
     i = 0;
-    j = 0;
-    
-    split_tab = (char **)malloc(count_words((char *)s, c) + 1 * sizeof(char *));
-    
-    if(!split_tab)
-        return (NULL);
+    k = 0;
+    tab = malloc((size + 1) * sizeof(char *));
 
-    while(s[i])
+    while(s[i] && k < size)
     {
-        k = 0;
-        while(s[i] == c)
-            i++;
-        
-        if(s[i])
-        {
-            split_tab[j] = (char *)malloc((count_word_len((char *)s, c, i) + 1) * sizeof(char));
-            
-            if(!split_tab)
-                return (NULL);
-
-            while(s[i] && s[i] != c)
-            {
-                split_tab[j][k] = s[i];
-                i++;
-                k++;
-            }
-            
-            split_tab[j][k] = '\0';
-            j++;
-        }
+        tab[k] = ft_fulfill_tab((char *)s, c, &i);
+        k++;
     }
-    split_tab[j] = NULL;
-    return(split_tab);
-}
+    tab[k] = NULL;
+    return(tab);
+} 
 
-//talvez necessario fazer o free do array interno caso nao consiga alocar memoria
-/*int main()
+/* int main()
 {
     char **tab;
-    int i;
+    int i = 0;
     
-    tab = ft_split("hello    world 42school ", ' ');
-    i = 0;
+    printf("words: %d\n", ft_count_words("hello world 42school", ' '));
+    tab = ft_split("hello world 42school", ' ');
     
     while(tab[i])
     {
-        printf("tab[%d] = %s\n", i, tab[i]);
+        printf("tab[%d]: %s\n", i, tab[i]);
         i++;
     }
-    return(0);
-}*/
+} */

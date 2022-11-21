@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:37:39 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/18 17:17:03 by root             ###   ########.fr       */
+/*   Updated: 2022/11/21 19:59:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void *ft_calloc(size_t nmemb, size_t size)
     return (ptr);
 }
 
-int main()
+/*int main()
 {
     calloc(4, sizeof(int));
     ft_calloc(4, sizeof(int));
-}
+}*/
 
