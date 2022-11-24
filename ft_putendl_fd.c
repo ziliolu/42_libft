@@ -6,7 +6,7 @@
 /*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:34:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/17 22:37:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2022/11/23 09:08:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	len;
-
-	len = ft_strlen(s);
-	if (!s || fd < 0)
-		return ;
-	write(fd, s, len);
-	write(1, "\n", 2);
+	ft_putstr_fd(s, fd);
+	ft_putstr_fd("\n", fd);
 }
 
 /*int main()

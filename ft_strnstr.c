@@ -6,50 +6,57 @@
 /*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:19:34 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/21 20:11:08 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:34:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strnstr(const char *big, const char *little, size_t len)
+static int	ft_check_str(char *big, char *little, size_t i)
 {
-    char *big_str;
-    char *little_str;
-    size_t i;
-    size_t j;
-    
-    big_str = (char *)big;
-    little_str = (char *)little;
-    i = 0;
-    
-    if(!little_str)
-        return (big_str);
-    
-    if(!big_str)
-        return (NULL);
+	int	j;
 
-    while(big_str && little_str && i < len)
-    {
-        j = 0;
-        if(big_str[i] == little_str[0])
-        {
-            while(big_str[i + j] == little_str[j] && (i + j) < len)
-            {
-                if(!little_str[j + 1])
-                    return (big_str + i);
-                j++;
-            }
-        }
-        i++;
-    }
-    return (NULL);
+	j = 0;
+	while (little[j])
+	{
+		if (big[i + j] != little[j])
+			return (0);
+		j++;
+	}
+	return (1);
 }
- 
-/*int main()
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	char	*big_str;
+	char	*little_str;
+	size_t	little_len;
+	size_t	i;
+
+	big_str = (char *)big;
+	little_str = (char *)little;
+	i = 0;
+	little_len = ft_strlen(little);
+	if (little_str[0] == '\0')
+		return (big_str);
+	if (big_str[0] == '\0')
+		return (NULL);
+	while (little_len + i <= len)
+	{
+		if (big_str[i] == little_str[0])
+		{
+			if (ft_check_str(big_str, little_str, i))
+				return (&big_str[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+/*  
+int main()
 {
     char *ptr;
 
-    ptr = ft_strnstr("lorem ipsum dolor sit amet", "o", 10);
+    ptr = ft_strnstr("", "ola", 10);
     printf("%s", ptr);
-}*/
+} */

@@ -35,7 +35,6 @@ SRC =	./ft_atoi.c 		\
 		./ft_tolower.c		\
 		./ft_toupper.c		\
 
-
 SRC_BONUS =		./ft_lstnew.c			\
 				./ft_lstadd_front.c 	\
 				./ft_lstsize.c 			\
@@ -55,7 +54,7 @@ FLAGS = -Wall -Wextra -Werror
                                                                                                                                                                                                                    
 all: $(NAME)                                                                                                                                                                                                       
                                                                                                                                                                                                                    
-$(NAME):                                                                                                                                                                                                           
+$(NAME):		$(SRC)                                                                                                                                                                                          
 		cc -c $(FLAGS) $(HEADER) $(SRC)                                                                                                                                                                           
 		ar rcs $(NAME) $(OBJ)                                                                                                                                                                                      
 
@@ -63,7 +62,11 @@ clean:
 		rm -rf $(OBJ)                                                                                                                                                                                              
                                                                                                                                                                                                                    
 fclean: clean                                                                                                                                                                                                      
-		rm -rf $(NAME)                                                                                                                                                                                             
+		rm -rf $(NAME) 
+
+bonus:	$(NAME) $(SRC_BONUS)
+		cc -c $(FLAGS) $(HEADER) $(SRC_BONUS)                                                                                                                                                                           
+		ar rs $(NAME) $(OBJ_BONUS)   
                                                                                                                                                                                                                    
 re: fclean all                                                                                                                                                                                                     
                                                                                                                                                                                                                    

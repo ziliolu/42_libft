@@ -6,7 +6,7 @@
 /*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 18:09:55 by root              #+#    #+#             */
-/*   Updated: 2022/11/21 19:58:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2022/11/23 09:45:04 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 void ft_lstadd_back(t_list **lst, t_list *new)
 {
-    t_list *tmp;
-    
-    if (lst)
+    t_list *last;
+
+    last = *lst;
+
+    if(!lst || ! new)
+        return ;
+    if (!*lst)
     {
-        if (*lst == NULL)
-            *lst = new;
-        else
-        {
-            tmp = ft_lstlast(*lst);
-            tmp->next = new;
-        }
+        *lst = new;
+        return ;
     }
+    while (last->next)
+        last = last->next;
+    last->next = new;
 }
 
 /*int main()
